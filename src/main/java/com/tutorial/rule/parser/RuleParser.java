@@ -1,5 +1,6 @@
 package com.tutorial.rule.parser;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,6 +13,7 @@ public class RuleParser<INPUT_DATA, OUTPUT_RESULT> {
     @Autowired
     protected MVELParser mvelParser;
 
+    private final String CURRENT_TIMESTAMP_KEYWORD = "systimestamp";
     private final String INPUT_KEYWORD = "input";
     private final String OUTPUT_KEYWORD = "output";
 
@@ -27,6 +29,7 @@ public class RuleParser<INPUT_DATA, OUTPUT_RESULT> {
     public boolean parseCondition(String expression, INPUT_DATA inputData) {
         Map<String, Object> input = new HashMap<>();
         input.put(INPUT_KEYWORD, inputData);
+        input.put(CURRENT_TIMESTAMP_KEYWORD, new Date());
         boolean match = mvelParser.parseMvelExpression(expression, input);
         return match;
     }

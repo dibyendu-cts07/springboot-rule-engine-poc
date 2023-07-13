@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.google.common.base.Enums;
 import com.tutorial.rule.data.entity.RuleEntity;
 import com.tutorial.rule.models.Rule;
 import com.tutorial.rule.models.RuleNamespace;
@@ -34,9 +33,10 @@ public class RuleService {
     }
 
     private Rule mapFromDbModel(RuleEntity ruleDbModel){
-        RuleNamespace namespace = Enums.getIfPresent(RuleNamespace.class, ruleDbModel.getRuleNamespace().toUpperCase())
-                .or(RuleNamespace.DEFAULT);
-        return Rule.builder()
+//        RuleNamespace namespace = Enums.getIfPresent(RuleNamespace.class, ruleDbModel.getRuleNamespace().toUpperCase())
+//                .or(RuleNamespace.DEFAULT);
+    	RuleNamespace namespace = RuleNamespace.valueOf(ruleDbModel.getRuleNamespace().toUpperCase());
+    	return Rule.builder()
                 .ruleNamespace(namespace)
                 .ruleId(ruleDbModel.getRuleId())
                 .condition(ruleDbModel.getCondition())

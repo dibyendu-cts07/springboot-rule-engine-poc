@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.google.common.base.Enums;
 import com.tutorial.rule.config.engine.RuleEngine;
 import com.tutorial.rule.config.engine.compliance.ComplainceInferenceEngine;
 import com.tutorial.rule.models.AccountDetails;
@@ -18,7 +17,7 @@ import com.tutorial.rule.models.ComplainceResult;
 import com.tutorial.rule.models.Rule;
 import com.tutorial.rule.models.RuleNamespace;
 import com.tutorial.rule.services.RuleService;
-
+//
 @RestController
 public class RuleEngineRestController {
     @Autowired
@@ -30,7 +29,10 @@ public class RuleEngineRestController {
 
     @GetMapping(value = "/get-all-rules/{ruleNamespace}")
     public ResponseEntity<?> getRulesByNamespace(@PathVariable("ruleNamespace") String ruleNamespace) {
-        RuleNamespace namespace = Enums.getIfPresent(RuleNamespace.class, ruleNamespace.toUpperCase()).or(RuleNamespace.DEFAULT);
+//    	RuleNamespace namespace = Enums.getIfPresent(RuleNamespace.class, ruleNamespace.toUpperCase())
+//    			.or(RuleNamespace.DEFAULT);
+    	
+    	RuleNamespace namespace = RuleNamespace.valueOf(ruleNamespace.toUpperCase());
         List<Rule> allRules = ruleService.getAllRuleByNamespace(namespace.toString());
         return ResponseEntity.ok(allRules);
     }

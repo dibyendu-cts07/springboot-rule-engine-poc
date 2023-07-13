@@ -23,3 +23,16 @@ VALUES (
  '1', 
  'Account has set as password never expired.'
 );
+
+--COMPLAINCE RULE 3
+INSERT INTO rules 
+ (rule_namespace , rule_id, condition, 
+ action, priority, description) 
+VALUES (
+ 'COMPLAINCE',
+ '3',
+ '(systimestamp.time - input.lastPasswordChanged.time)/(1000*60*60*24) >= 90', 
+ 'output.ruleId = 3;output.message = "Account has not reset in last 90 days.";',
+ '1', 
+ 'Account has set as password never expired.'
+);
