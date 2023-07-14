@@ -10,13 +10,13 @@ import com.tutorial.rule.models.RuleNamespace;
 @Service
 public class ComplainceInferenceEngine extends InferenceEngine<AccountDetails, ComplainceResult> {
 
-    @Override
-    protected RuleNamespace getRuleNamespace() {
-        return RuleNamespace.COMPLAINCE;
-    }
+	@Override
+	protected RuleNamespace getRuleNamespace() {
+		return RuleNamespace.COMPLAINCE;
+	}
 
-    @Override
-    protected ComplainceResult initializeOutputResult() {
-        return ComplainceResult.builder().build();
-    }
+	@Override
+	protected ComplainceResult initializeOutputResult() {
+		return ComplainceResult.builder().build();
+	}
 }

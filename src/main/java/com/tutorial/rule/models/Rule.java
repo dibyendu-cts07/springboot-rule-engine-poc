@@ -10,10 +10,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class Rule {
-    RuleNamespace ruleNamespace;
-    String ruleId;
-    String condition;
-    String action;
-    Integer priority;
-    String description;
+
+	RuleNamespace ruleNamespace;
+	String ruleId;
+	String condition;
+	String action;
+	Integer priority;
+	String description;
 }

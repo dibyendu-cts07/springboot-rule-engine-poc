@@ -17,36 +17,37 @@ import com.tutorial.rule.models.ComplainceResult;
 import com.tutorial.rule.models.Rule;
 import com.tutorial.rule.models.RuleNamespace;
 import com.tutorial.rule.services.RuleService;
-//
+
 @RestController
 public class RuleEngineRestController {
-    @Autowired
-    private RuleService ruleService;
-    @Autowired
-    private RuleEngine ruleEngine;
-    @Autowired
-    private ComplainceInferenceEngine complainceInferenceEngine;
 
-    @GetMapping(value = "/get-all-rules/{ruleNamespace}")
-    public ResponseEntity<?> getRulesByNamespace(@PathVariable("ruleNamespace") String ruleNamespace) {
-//    	RuleNamespace namespace = Enums.getIfPresent(RuleNamespace.class, ruleNamespace.toUpperCase())
-//    			.or(RuleNamespace.DEFAULT);
-    	
-    	RuleNamespace namespace = RuleNamespace.valueOf(ruleNamespace.toUpperCase());
-        List<Rule> allRules = ruleService.getAllRuleByNamespace(namespace.toString());
-        return ResponseEntity.ok(allRules);
-    }
+	@Autowired
+	private RuleService ruleService;
 
-    @GetMapping(value = "/get-all-rules")
-    public ResponseEntity<?> getAllRules() {
-        List<Rule> allRules = ruleService.getAllRules();
-        return ResponseEntity.ok(allRules);
-    }
+	@Autowired
+	private RuleEngine ruleEngine;
 
-    @PostMapping(value = "/complaince")
-    public ResponseEntity<?> postUserLoanDetails(@RequestBody AccountDetails accountDetails) {
-        List<ComplainceResult> result = (List<ComplainceResult>) ruleEngine.run(complainceInferenceEngine, accountDetails);
-        return ResponseEntity.ok(result);
-    }
+	@Autowired
+	private ComplainceInferenceEngine complainceInferenceEngine;
+
+	@GetMapping(value = "/get-all-rules/{ruleNamespace}")
+	public ResponseEntity<?> getRulesByNamespace(@PathVariable("ruleNamespace") String ruleNamespace) {
+		RuleNamespace namespace = RuleNamespace.valueOf(ruleNamespace.toUpperCase());
+		List<Rule> allRules = ruleService.getAllRuleByNamespace(namespace.toString());
+		return ResponseEntity.ok(allRules);
+	}
+
+	@GetMapping(value = "/get-all-rules")
+	public ResponseEntity<?> getAllRules() {
+		List<Rule> allRules = ruleService.getAllRules();
+		return ResponseEntity.ok(allRules);
+	}
+
+	@PostMapping(value = "/complaince")
+	public ResponseEntity<?> postUserLoanDetails(@RequestBody AccountDetails accountDetails) {
+		List<ComplainceResult> result = (List<ComplainceResult>) ruleEngine.run(complainceInferenceEngine,
+				accountDetails);
+		return ResponseEntity.ok(result);
+	}
 
 }

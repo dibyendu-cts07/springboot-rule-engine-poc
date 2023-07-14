@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ComplainceResult {
-    String ruleId;
-    String message;
+
+	String ruleId;
+	String message;
 }

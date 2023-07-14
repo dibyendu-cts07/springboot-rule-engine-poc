@@ -32,7 +32,7 @@ VALUES (
  'COMPLAINCE',
  '3',
  '(systimestamp.time - input.lastPasswordChanged.time)/(1000*60*60*24) >= 90', 
- 'output.ruleId = 3;output.message = "Account has not reset in last 90 days.";',
+ 'output.ruleId = 3;output.message = "Password has not reset in last 90 days.";',
  '1', 
- 'Account has set as password never expired.'
+ 'Password has not reset in last 90 days.'
 );

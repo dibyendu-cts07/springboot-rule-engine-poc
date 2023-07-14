@@ -14,16 +14,18 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AccountDetails {
-    String id;
-    String type;
-    String ownerName;
 
-    @JsonFormat(pattern = "dd-MM-yyyy")
-    Date lastPasswordChanged;
-    boolean active;
-    Date creationDate;
-    Date reviewDate;
-    Date lastLoginDate;
-    boolean passwordNeverExpired;
-    int noOfGroups;
+	String id;
+	String type;
+	String ownerName;
+
+	@JsonFormat(pattern = "dd-MM-yyyy")
+	Date lastPasswordChanged;
+
+	boolean active;
+	Date creationDate;
+	Date reviewDate;
+	Date lastLoginDate;
+	boolean passwordNeverExpired;
+	int noOfGroups;
 }
